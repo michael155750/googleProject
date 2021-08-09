@@ -1,9 +1,10 @@
-#include <string>
+﻿#include <string>
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <map>
-#include "C:\Users\Omer\source\repos\jsoncpp\include\json\writer.h"
+#include "D:\מכון לב\שנה ד\אקסלנטים\jsoncpp\include\json\json.h"
+//#include "jsoncpp\include\nlohmann\json.hpp"
 class RowDescription {
 public:
 	std::string m_nameFile;
@@ -96,8 +97,17 @@ public:
 		//Json::StreamWriter writer = ;
 		//const std::string output = writer.write(root);
 
+		std::ofstream file_id;
+		file_id.open("fileGoogle.txt");
 
+		Json::Value value_obj;
+		//populate 'value_obj' with the objects, arrays etc.
 
+		Json::StyledWriter styledWriter;
+		file_id << styledWriter.write(value_obj);
+
+		file_id.close();
+		//
 	}
 	void setPath(std::string path)
 	{
