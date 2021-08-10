@@ -58,18 +58,19 @@ class Table:
                             line = file2.readline()
                             offset_in_txt = 0
                             while line:
+                                line_without_tv = ''.join(e for e in line if e.isalnum())
                                 for tv1 in LIST_WORD:
                                     for tv2 in LIST_WORD:
                                         key_word = tv1 + tv2
-                                        for offset_in_line in range(len(line)-1):
-                                            word = str(line[offset_in_line] + line[offset_in_line + 1])
+                                        for offset_in_line in range(len(line_without_tv)-1):
+                                            word = str(line_without_tv[offset_in_line] + line_without_tv[offset_in_line + 1])
                                             if key_word == word.lower():
                                                 if key_word not in self._table_map.keys():
                                                     self._table_map.update({key_word: [""]})
                                                 self._table_map[key_word].append([offset_in_line, offset_in_line + offset_in_txt, file, line])
                                 offset_in_txt += len(line)
                                 line = file2.readline()
-
+#= ''.join(e for e in prefix if e.isalnum())
                         file2.close()
 
         except Exception:
